@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Add a Contact:</h1>
+    <br>
+    <!-- action="" means form data is submitted to the current URL; 'post' creates a cleaner alt to get method; -->
+    <form action="" method="post" novalidate> 
+        <!-- csrf token very important dont forget it! -->
+        {{ form.csrf_token }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            <!-- i think form.name.errors is a fn from the FlaskForm class... -->
+            {% for error in form.name.errors %}
+            <span style="color: red">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.phone.label }}<br>
+            {{ form.phone(size=32) }}<br>
+            {% for error in form.phone.errors %}
+            <span style="color: red">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.address.label }}<br>
+            {{ form.address(size=32) }}<br>
+            {% for error in form.address.errors %}
+            <span style="color: red">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+        
+    </form>
+
+</div>
+
+{% endblock content %}

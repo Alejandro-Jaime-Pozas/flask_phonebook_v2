@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ address.name }} {% endblock title %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Edit Contact {{ address.name }}:</h1>
+    <br>
+    <!-- action="" means form data is submitted to the current URL; 'post' creates a cleaner alt to get method; -->
+    <form action="" method="post" novalidate> 
+        <!-- csrf token very important dont forget it! -->
+        {{ form.csrf_token }}
+        <p>
+            <!-- COME BACK TO UNDERSTAND THIS -->
+            {{ form.name.label }}<br>
+            {{ form.name(class='form-control', value=address.name) }}<br>
+        </p>
+        <p>
+            {{ form.phone.label }}<br>
+            {{ form.phone(class='form-control', value=address.phone) }}<br>
+        </p>
+        <p>
+            {{ form.address.label }}<br>
+            {{ form.address(class='form-control', value=address.address) }}<br>
+        </p>
+        <p>{{ form.submit(class='btn btn-secondary w-100 mt-3') }}</p>
+        
+    </form>
+
+</div>
+
+{% endblock content %}

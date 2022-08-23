@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Phonebook {% endblock title %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="">Your Phonebook</h1>
+    <br>
+    {% if current_user.is_authenticated %}
+        <h6>Signed in as: {{ current_user.email }}</h6>
+        <br>
+
+        {% for address in addresses %}
+        <!-- if address belongs to the owner that is logged in, return address -->
+            {% if current_user == address.owner %}
+        
+            <div class="card text-start " style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">
+                        <a href="{{ url_for('view_address', address_id=address.id) }}">
+                            {{ address.name }}
+                        </a> 
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ address.phone }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ address.address }}</h6>
+                </div>
+            </div>
+            <br>
+            {% endif %}
+        {% endfor %}
+        
+    {% else %}
+        <h4>Please sign up or log in to view addresses</h4>
+    {% endif %}
+    
+</div>
+
+{% endblock content %}

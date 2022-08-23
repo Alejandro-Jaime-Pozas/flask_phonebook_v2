@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Signup {% endblock title %}
+
+{% block content %}
+<div class="text-center">
+    <form method="post">
+        {{ form.csrf_token }}
+
+        <h1 class="">Please Sign Up To Get Started:</h1>
+        <br>
+        {{ form.email.label }} <br>
+        {{ form.email }}
+        <br><br>
+        {{ form.password.label }} <br>
+        {{ form.password }}
+        <br><br>
+        {{ form.confirm_pswd.label }} <br>
+        {{ form.confirm_pswd }}
+        <br><br>
+        {{ form.submit }}
+    </form>
+
+</div>
+
+{% endblock content %}

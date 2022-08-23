@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+<!-- block will write if a child html has the equivalent in its template  -->
+<title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+
+<!-- navbar goes here -->
+<!-- you can also do include to include a separate html file in this file -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Phonebook</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <!-- the href below references an endpoint, looking for a fn defined in routes.py -->
+                {% if current_user.is_active %}
+                <a class="nav-link" href="{{ url_for('phone') }}">Add a Contact</a>
+                <a class="nav-link" href="{{ url_for('phonebook') }}">View Phonebook</a>
+                <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                
+                {% else %}
+                <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- content here -->
+    <div class="container">
+        <!-- include alert.html at top of page below navbar if there is an alert message to display -->
+        {% include 'alert.html' %}
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
