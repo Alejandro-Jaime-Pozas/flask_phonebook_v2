@@ -1,5 +1,4 @@
 # Use the actual name, phone, address fields here. additional also a remember me, and submit button
-from ast import Pass
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, PasswordField
 from wtforms.validators import InputRequired, Length, EqualTo
