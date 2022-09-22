@@ -15,6 +15,7 @@
     # - The UI/UX should be easy and intuitive. A simple navbar with working links, message flashing, etc.
 # *Bonus* Host your application on Heroku
     #  trying to host application on heroku
+# random note
 
 from flask import Flask
 from config import Config
